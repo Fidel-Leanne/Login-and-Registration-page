@@ -1,11 +1,13 @@
 import React from 'react'
-import SignOut from '../components/SignOut'
 import LandingPage from '../components/LandingPage'
+import AuthValidation from '../components/AuthValidation'
 
-const page = () => {
+
+
+const Home = () => {
   return (
     <LandingPage/>
   )
 }
 
-export default page
+export default Home 

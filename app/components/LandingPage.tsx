@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import AuthValidation from './AuthValidation'
 
 const LandingPage = () => {
   const [userName, setUserName] = useState<string | null>(null)

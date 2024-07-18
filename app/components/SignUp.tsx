@@ -27,9 +27,10 @@ const SignUp = () => {
     const users = JSON.parse(localStorage.getItem('users') || '[]')
     users.push(form)
     localStorage.setItem('users', JSON.stringify(users))
+    localStorage.setItem('user', JSON.stringify(form)) // This line ensures the current user is authenticated
     
-    // Redirect to the sign-in page
-    router.push('/SignInPage')
+    // Redirect to the Home page
+    router.push('/Home')
   }
 
   return (

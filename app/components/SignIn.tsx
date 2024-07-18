@@ -20,23 +20,33 @@ const SignIn = () => {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+  
     // Retrieve the user information from local storage
     const users = JSON.parse(localStorage.getItem('users') || '[]')
     const user = users.find((u: { email: string; password: string }) => u.email === form.email && u.password === form.password)
-
+  
     if (user) {
       // Set authentication cookie
       Cookies.set('isAuthenticated', 'true', { expires: 1 }) // 1 day expiration
-
-      // Redirect to the home page or Home
+  
+      // Update user's logged-in status in local storage
+      const updatedUsers = users.map((u: any) => {
+        if (u.email === user.email) {
+          return { ...u, isLoggedIn: true }
+        }
+        return { ...u, isLoggedIn: false }
+      })
+      localStorage.setItem('users', JSON.stringify(updatedUsers))
+  
+      // Redirect to the home page
       router.push('/Home')
     } else {
       alert('Invalid credentials')
     }
   }
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-500 to-indigo-600">
